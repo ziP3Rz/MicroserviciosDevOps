@@ -17,7 +17,7 @@ import net.zip3rz.pedidos_service.service.PedidoService;
 public class PedidoController {
 
 	@Autowired
-    private PedidoService pedidoService;
+	private PedidoService pedidoService;
 
     @PostMapping
     public Pedido createPedido(@RequestParam String producto, @RequestParam Integer cantidad) {

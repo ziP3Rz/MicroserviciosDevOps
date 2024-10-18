@@ -1,4 +1,4 @@
-package service.impl;
+package net.zip3rz.pedidos_service.service.impl;
 
 import java.time.LocalDateTime;
 import java.util.List;
