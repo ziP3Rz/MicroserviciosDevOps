@@ -1,4 +1,4 @@
-package net.zip3rz.pedidos_service;
+package net.zip3rz.pedidos_service.controller;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.zip3rz.pedidos_service.model.Pedido;
-import service.impl.PedidoService;
+import net.zip3rz.pedidos_service.service.PedidoService;
 
 @RestController
 @RequestMapping("/pedidos")

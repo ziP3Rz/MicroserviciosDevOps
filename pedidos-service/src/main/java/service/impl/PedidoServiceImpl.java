@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.zip3rz.pedidos_service.model.Pedido;
-import reposiroty.PedidoRepository;
+import net.zip3rz.pedidos_service.repository.PedidoRepository;
+import net.zip3rz.pedidos_service.service.PedidoService;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
