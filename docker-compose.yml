@@ -1,30 +1,44 @@
 version: '3.9'
 services:
-  postgresql:
+  postgres-pedidos:
     image: postgres:14
-    container_name: postgres-db
+    container_name: postgres-pedidos
     environment:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: mcP4ss
-      POSTGRES_DB: orders
+      POSTGRES_DB: pedidos
     ports:
       - "5432:5432"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - postgres-pedidos-data:/var/lib/postgresql/data
+
+  postgres-usuarios:
+    image: postgres:14
+    container_name: postgres-usuarios
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: mcP4ss
+      POSTGRES_DB: usuarios
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres-usuarios-data:/var/lib/postgresql/data
 
   mongodb:
     image: mongo:8.0
     container_name: mongo-db
     ports:
       - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: mcP4ss
+    volumes:
+      - mongo-data:/data/db
 
 volumes:
-  postgres-data:
+  postgres-pedidos-data:
+    driver: local
+  postgres-usuarios-data:
     driver: local
   mongo-data:
     driver: local
