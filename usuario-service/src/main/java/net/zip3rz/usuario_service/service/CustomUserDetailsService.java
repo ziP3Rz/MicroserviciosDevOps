@@ -5,24 +5,26 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import net.zip3rz.usuario_service.model.Usuario;
 import net.zip3rz.usuario_service.repository.UsuarioRepository;
 
-public class CustomUserDetailsService implements UserDetailsService{
-	
-	@Autowired
-	private UsuarioRepository userRepository;
-	
-    @Override
-    public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
-        Usuario user = userRepository.findByNombre(nombre)
-            .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
 
-        return User.withUsername(user.getNombre())
-            .password(user.getContrasena())
-            .roles(user.getRol())  // Puedes usar 'ROLE_USER', 'ROLE_ADMIN', etc.
-            .build();
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Usuario usuario = usuarioRepository.findByNombre(username)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado con el nombre: " + username));
+
+        return User.withUsername(usuario.getNombre())
+                .password(usuario.getContrasena())
+                .roles(usuario.getRol())
+                .build();
     }
-	
+    
 }
