@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>net.zip3rz</groupId>
-	<artifactId>usuario-service</artifactId>
+	<artifactId>usuarios-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>usuario-service</name>
+	<name>usuarios-service</name>
 	<description>Microservicio que maneja los usuarios que acceden a un almacén</description>
 	<url/>
 	<licenses>

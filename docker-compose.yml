@@ -36,6 +36,42 @@ services:
       - mongo-data:/data/db
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
 
+  pedidos-service:
+    build: ./pedidos-service
+    container_name: pedidos-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres-pedidos
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-pedidos:5432/pedidos
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: mcP4ss
+      SPRING_PROFILES_ACTIVE: docker
+
+  usuarios-service:
+    build: ./usuarios-service
+    container_name: usuarios-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres-usuarios
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-usuarios:5432/usuarios
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: mcP4ss
+      SPRING_PROFILES_ACTIVE: docker
+
+  inventario-service:
+    build: ./inventario-service
+    container_name: inventario-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb
+    environment:
+      SPRING_DATA_MONGODB_URI: mongodb://inventario:mcP4ss@mongo-db:27017/inventario
+
 volumes:
   postgres-pedidos-data:
     driver: local
