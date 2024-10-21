@@ -28,10 +28,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            .csrf(csrf -> csrf.disable()) // Desactiva CSRF
+            .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/auth/**").permitAll() // Permite acceso a las rutas de autenticación
-                .anyRequest().authenticated() // Cualquier otra solicitud requiere autenticación
+                .requestMatchers("/auth/**").permitAll()
+                .anyRequest().authenticated()
             );
 
         return http.build();
